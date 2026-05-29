@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Prestige Concierge | Luxury Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      background: #0a0907;
+      font-family: 'Jost', sans-serif;
+      color: #F7F5F0;
+      line-height: 1.4;
+    }
+
+    .app-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #11100C;
+      min-height: 100vh;
+      position: relative;
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+      border-radius: 28px 28px 0 0;
+      overflow: hidden;
+    }
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      z-index: 0;
+    }
+    .content-layer {
+      position: relative;
+      z-index: 2;
+    }
+    .header {
+      padding: 20px 20px 12px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+    .eyebrow {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 4px;
+    }
+    .main-title {
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: #FFFDF8;
+    }
+    .back-btn {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: #C9A84C;
+      font-size: 10px;
+      letter-spacing: 2px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .hide-back {
+      display: none;
+    }
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #C9A84C 20%, #E4CF91 50%, #C9A84C 80%, transparent);
+      margin: 0 20px 8px;
+    }
+    .tabs-nav {
+      display: flex;
+      padding: 8px 20px 0;
+      gap: 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar {
+      display: none;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: rgba(247,245,240,0.78);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 12px 4px;
+      margin-bottom: -1px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      font-family: 'Jost', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .tab-btn:hover {
+      color: #F7F5F0;
+    }
+    .tab-btn.active {
+      color: #FFFDF8;
+      font-weight: 600;
+      border-bottom-color: #E4CF91;
+      background: linear-gradient(180deg, rgba(201,168,76,0.12) 0%, transparent 100%);
+    }
+    .tab-btn:focus-visible {
+      outline: 2px solid #C9A84C;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Hero — image only, text below */
+    .hero-image, .about-hero {
+      height: 200px;
+      overflow: hidden;
+      border-radius: 24px 24px 0 0;
+    }
+    .hero-image img, .about-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-caption, .about-caption {
+      padding: 18px 20px 0;
+      text-align: center;
+    }
+    .about-caption {
+      text-align: start;
+    }
+    .hero-sub, .about-tag {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 8px;
+    }
+    .hero-title, .about-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: #FFFDF8;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+    .about-title {
+      font-size: 22px;
+    }
+    .ov-body {
+      padding: 20px 20px 32px;
+    }
+    .ov-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: rgba(247,245,240,0.85);
+      border-inline-start: 2px solid #C9A84C;
+      padding-inline-start: 14px;
+      margin-bottom: 24px;
+    }
+    .stats-grid, .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .pillars-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stat-card, .pillar {
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 16px;
+      padding: 12px 6px;
+      text-align: center;
+    }
+    .pillar {
+      text-align: start;
+      padding: 14px;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      color: #C9A84C;
+    }
+    .stat-label {
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(247,245,240,0.55);
+      margin-top: 4px;
+    }
+    .pillar i {
+      font-size: 22px;
+      color: #C9A84C;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .pillar h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    .pillar p {
+      font-size: 10px;
+      color: rgba(247,245,240,0.6);
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-pri, .btn-sec {
+      flex: 1;
+      padding: 12px 0;
+      border-radius: 40px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-pri {
+      background: linear-gradient(135deg, #C9A84C, #E2CD8F);
+      border: none;
+      color: #0E0C09;
+    }
+    .btn-sec {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: #C9A84C;
+    }
+    /* About & Timeline */
+    .ab-section {
+      margin-bottom: 28px;
+    }
+    .ab-section h4 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+    .ab-text {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(247,245,240,0.7);
+      margin-bottom: 12px;
+    }
+    .timeline {
+      position: relative;
+      padding-inline-start: 24px;
+      margin-top: 16px;
+    }
+    .timeline:before {
+      content: '';
+      position: absolute;
+      inset-inline-start: 8px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(201,168,76,0.3);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .tl-dot {
+      position: absolute;
+      inset-inline-start: -20px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #C9A84C;
+      border: 1px solid #11100C;
+    }
+    .tl-year {
+      font-size: 11px;
+      font-weight: 600;
+      color: #C9A84C;
+    }
+    .tl-text {
+      font-size: 12px;
+      color: rgba(247,245,240,0.65);
+    }
+    .reach-body, .bespoke-body {
+      padding-top: 24px;
+      padding-bottom: 32px;
+    }
+    .reach-lead {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(247,245,240,0.75);
+      margin-bottom: 22px;
+    }
+    .contact-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 0;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(201,168,76,0.03);
+      padding: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+    .contact-item i {
+      font-size: 18px;
+      color: #C9A84C;
+    }
+    .contact-label {
+      font-size: 7px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(247,245,240,0.45);
+    }
+    .contact-val {
+      font-size: 10px;
+      line-height: 1.45;
+    }
+    .contact-val a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contact-val a:hover {
+      color: #C9A84C;
+    }
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 16px 16px 32px;
+    }
+    .service-item {
+      background: rgba(17,16,12,0.7);
+      padding: 16px;
+      border: 1px solid rgba(201,168,76,0.08);
+      border-radius: 20px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .service-item:active {
+      transform: scale(0.98);
+      background: rgba(201,168,76,0.05);
+    }
+    .service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .service-name i {
+      color: #C9A84C;
+      font-size: 18px;
+    }
+    .service-cat {
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      background: rgba(201,168,76,0.12);
+      padding: 2px 8px;
+      border-radius: 20px;
+      color: #C9A84C;
+    }
+    .service-desc {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(247,245,240,0.65);
+      margin-top: 6px;
+      padding-inline-end: 26px;
+    }
+    .arrow-icon {
+      transition: transform 0.2s;
+      display: inline-block;
+      margin-inline-start: 6px;
+      color: #C9A84C;
+    }
+    .more-section {
+      background: rgba(201,168,76,0.02);
+      border-radius: 20px;
+      margin-top: 12px;
+      border: 1px dashed rgba(201,168,76,0.2);
+    }
+    .more-trigger {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 16px;
+      cursor: pointer;
+      color: #C9A84C;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .more-grid {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 0 16px 18px;
+    }
+    .more-grid.open {
+      display: grid;
+    }
+    .more-service {
+      background: rgba(255,255,240,0.02);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 16px;
+      padding: 12px 6px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .more-service i {
+      font-size: 22px;
+      color: #C9A84C;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .bespoke-intro {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(247,245,240,0.75);
+      margin-bottom: 18px;
+    }
+    .bespoke-services {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .bespoke-card {
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 16px;
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .bespoke-card:hover, .bespoke-card.selected {
+      border-color: #C9A84C;
+      background: rgba(201,168,76,0.1);
+    }
+    .bespoke-card i {
+      font-size: 22px;
+      color: #C9A84C;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .bespoke-card span {
+      font-size: 10px;
+      color: rgba(247,245,240,0.85);
+      display: block;
+      line-height: 1.35;
+    }
+    .bespoke-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .bespoke-form h4 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 4px;
+    }
+    .form-field label {
+      display: block;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(247,245,240,0.5);
+      margin-bottom: 6px;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #F7F5F0;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: #C9A84C;
+    }
+    .form-field textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+    .form-field select {
+      cursor: pointer;
+    }
+    .bespoke-submit {
+      margin-top: 6px;
+      background: linear-gradient(135deg, #C9A84C, #E2CD8F);
+      border: none;
+      width: 100%;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #0E0C09;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+    }
+    /* Detail overlay — stays inside app frame */
+    .detail-view {
+      position: absolute;
+      inset: 0;
+      background: #11100C;
+      z-index: 30;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1), visibility 0.35s;
+      visibility: hidden;
+    }
+    .detail-view.active {
+      transform: translateX(0);
+      visibility: visible;
+    }
+    .app-container.detail-open {
+      overflow: hidden;
+    }
+    .app-container.detail-open .content-layer {
+      visibility: hidden;
+    }
+    .detail-inner {
+      padding: 20px 20px 40px;
+    }
+    .detail-media {
+      margin-bottom: 20px;
+    }
+    .detail-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .detail-gallery-main {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+    }
+    .detail-body {
+      position: relative;
+      z-index: 1;
+    }
+    .detail-category {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 6px;
+    }
+    .detail-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 300;
+      color: #FFFDF8;
+      margin-bottom: 0;
+    }
+    .gold-line {
+      width: 48px;
+      height: 1px;
+      background: #C9A84C;
+      margin: 10px 0 16px;
+    }
+    .detail-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(247,245,240,0.85);
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.3);
+      padding: 10px 12px;
+      border-radius: 16px;
+    }
+    /* Use-cases & features with solid dark background */
+    .use-cases {
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(2px);
+      border-radius: 20px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(201,168,76,0.25);
+    }
+    .use-cases h4 {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: #C9A84C;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .use-cases ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+    }
+    .use-cases li {
+      background: rgba(201,168,76,0.15);
+      backdrop-filter: blur(2px);
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-size: 10px;
+      color: #F7F5F0;
+      font-weight: 400;
+    }
+    .features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 28px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 20px;
+      padding: 14px;
+    }
+    .feature {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(247,245,240,0.9);
+      background: rgba(0,0,0,0.3);
+      padding: 6px 10px;
+      border-radius: 40px;
+    }
+    .feature i {
+      color: #C9A84C;
+      font-size: 14px;
+    }
+    .request-btn {
+      background: linear-gradient(135deg, #C9A84C, #E2CD8F);
+      border: none;
+      width: 100%;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #0E0C09;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+    .detail-back {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.4);
+      width: 100%;
+      padding: 12px;
+      border-radius: 40px;
+      color: #C9A84C;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <div class="bg-grid"></div>
+  <div class="content-layer">
+    <div class="header">
+      <div class="brand">
+        <div class="eyebrow">PRESTIGE · CONCIERGE</div>
+        <div class="main-title" id="mainViewTitle">Concierge Services</div>
+      </div>
+      <button class="back-btn hide-back" id="globalBackBtn" onclick="closeDetailView()">
+        <i class="ti ti-arrow-left"></i> All Services
+      </button>
+    </div>
+    <div class="gold-divider"></div>
+
+    <div class="tabs-nav">
+      <button class="tab-btn" data-tab="overview">Overview</button>
+      <button class="tab-btn active" data-tab="services">Services</button>
+      <button class="tab-btn" data-tab="bespoke">Bespoke</button>
+      <button class="tab-btn" data-tab="reach">Reach Us</button>
+    </div>
+
+    <!-- Overview -->
+    <div id="tab-overview" class="tab-panel">
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80&auto=format&fit=crop" alt="Luxury hotel lobby">
+      </div>
+      <div class="hero-caption">
+        <div class="hero-sub">Welcome to</div>
+        <div class="hero-title">An Uncommon<br>Standard of Care</div>
+      </div>
+      <div class="ov-body">
+        <p class="ov-lead">"We do not simply fulfil requests — we anticipate desires before they are spoken, and exceed expectations before they are formed."</p>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num">24/7</div><div class="stat-label">Always Available</div></div>
+          <div class="stat-card"><div class="stat-num">11+</div><div class="stat-label">Core Services</div></div>
+          <div class="stat-card"><div class="stat-num">100</div><div class="stat-label">Years of Excellence</div></div>
+        </div>
+        <div class="pillars-grid">
+          <div class="pillar"><i class="ti ti-shield-check"></i><h4>Total Discretion</h4><p>Every request handled with absolute confidentiality.</p></div>
+          <div class="pillar"><i class="ti ti-clock"></i><h4>Instant Response</h4><p>Your concierge is available around the clock.</p></div>
+          <div class="pillar"><i class="ti ti-star"></i><h4>White-Glove Quality</h4><p>Vetted to the highest standard of excellence.</p></div>
+          <div class="pillar"><i class="ti ti-heart"></i><h4>Personalised Touch</h4><p>Your preferences remembered and refined.</p></div>
+        </div>
+        <div class="cta-row">
+          <button class="btn-pri" onclick="switchToServicesTab()">Explore Services</button>
+          <button class="btn-sec" onclick="switchToReachTab()">Reach Us</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Panel -->
+    <div id="tab-services" class="tab-panel active">
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+
+    <!-- Bespoke Services -->
+    <div id="tab-bespoke" class="tab-panel">
+      <div class="ov-body bespoke-body">
+        <p class="bespoke-intro">Tell us which bespoke experience you need and how to reach you — your concierge will respond promptly.</p>
+        <div class="bespoke-services" id="bespokeServiceList"></div>
+        <form id="bespokeForm" class="bespoke-form">
+          <h4>Your Contact Information</h4>
+          <div class="form-field">
+            <label for="bespokeName">Full Name</label>
+            <input type="text" id="bespokeName" name="name" required placeholder="Your name" autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="bespokeEmail">Email</label>
+            <input type="email" id="bespokeEmail" name="email" required placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="bespokePhone">Phone</label>
+            <input type="tel" id="bespokePhone" name="phone" required placeholder="+1 000 000 0000" autocomplete="tel">
+          </div>
+          <div class="form-field">
+            <label for="bespokeService">Service of Interest</label>
+            <select id="bespokeService" name="service" required>
+              <option value="">Select a service</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="bespokeDetails">Additional Details</label>
+            <textarea id="bespokeDetails" name="details" placeholder="Dates, preferences, or special requests…"></textarea>
+          </div>
+          <button type="submit" class="bespoke-submit">Submit Request</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Reach Us -->
+    <div id="tab-reach" class="tab-panel">
+      <div class="ov-body reach-body">
+        <p class="reach-lead">We are available around the clock for reservations, requests, and bespoke arrangements.</p>
+        <div class="contact-block">
+          <div class="contact-item"><i class="ti ti-phone"></i><div><div class="contact-label">Direct Line</div><div class="contact-val"><a href="tel:+12138187228">+1 213 818 7228</a></div></div></div>
+          <div class="contact-item"><i class="ti ti-mail"></i><div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:losangeles.propertymgmt@gmail.com">losangeles.propertymgmt@gmail.com</a></div></div></div>
+          <div class="contact-item"><i class="ti ti-message"></i><div><div class="contact-label">Text</div><div class="contact-val"><a href="sms:+13102098307">+1 310 209 8307</a></div></div></div>
+          <div class="contact-item"><i class="ti ti-map-pin"></i><div><div class="contact-label">Our Office</div><div class="contact-val">8586 Wilshire Blvd, Beverly Hills 90211</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div id="detailView" class="detail-view">
+    <div class="detail-inner" id="detailInner"></div>
+  </div>
+</div>
+
+<script>
+  const PAGE_TITLES = {
+    services: 'Concierge Services',
+    overview: 'Welcome',
+    reach: 'Reach Us',
+    bespoke: 'Bespoke Services'
+  };
+  const BESPOKE_EMAIL = 'losangeles.propertymgmt@gmail.com';
+  const servicesData = [
+    { id:"chef", name:"Private Chefs", category:"Dining", shortDesc:"Michelin-starred cuisine in your suite.", fullDesc:"Our roster of Michelin-pedigreed private chefs composes each menu around your exact palate. From intimate candlelit dinners to lavish multi-course soirées, every dish is prepared with locally sourced produce and presented with the ceremony you deserve.", examples:["Anniversary dinner","Executive lunch","7‑course tasting"], features:["Personalized menu","Farm-to-table sourcing","Dietary expertise","All equipment"], image:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&auto=format&fit=crop" },
+    { id:"cars", name:"Luxury Car Rentals", category:"Transportation", shortDesc:"Rolls‑Royce, Bentley, Ferrari delivered.", fullDesc:"Choose from an immaculate fleet of Rolls‑Royce, Bentley, Ferrari and more. Every vehicle is delivered to your entrance, fully valeted, with a uniformed chauffeur available on request.", examples:["Wedding arrival","Coastal tour","Executive meetings"], features:["Rolls‑Royce·Bentley","Chauffeur or self-drive","Hourly/daily","24h roadside"], image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80&auto=format&fit=crop" },
+    { id:"airport", name:"Airport Pickup & Drop‑off", category:"Transportation", shortDesc:"Runway to retreat, effortlessly.", fullDesc:"Private meet‑and‑greet, expedited luggage handling, and VIP airside access. Our drivers monitor flights in real time, so we are always there — regardless of delays.", examples:["International welcome","Business transfer","Family arrival"], features:["Live flight monitoring","Meet‑and‑greet","Luggage porter","Privacy"], image:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80&auto=format&fit=crop" },
+    { id:"masseuse", name:"Private Masseuse", category:"Wellness", shortDesc:"Restorative therapies wherever you wish.", fullDesc:"Certified therapists arrive with all equipment, luxury oils, and treatment products. From deep‑tissue to hot stone, every session is personalised.", examples:["Post-flight recovery","Pre-event relaxation","Couples massage"], features:["In‑suite sessions","Couples treatments","Specialist matching","Diptyque & Aesop"], image:"https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80&auto=format&fit=crop" },
+    { id:"shopper", name:"Personal Shoppers", category:"Lifestyle", shortDesc:"Finest boutiques before you arrive.", fullDesc:"Our stylists maintain exclusive relationships with leading maisons. Arrange after‑hours appointments or receive pre‑curated looks delivered to your suite.", examples:["Wardrobe refresh","Surprise gift","Gala look"], features:["Private appointments","Bespoke styling","Gift wrapping","Same‑day delivery"], image:"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80&auto=format&fit=crop" },
+    { id:"luggage", name:"Luggage Storage", category:"Essentials", shortDesc:"Travel light. We handle the rest.", fullDesc:"Secure, climate‑controlled storage between check‑out and departure. Discreet collection and delivery around the clock.", examples:["Exploration day","Long layover","Late meeting"], features:["Climate‑controlled vaults","24h collection","Full insurance","Shoe care"], image:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80&auto=format&fit=crop" },
+    { id:"beauty", name:"Makeup Artists & Hair Stylists", category:"Beauty", shortDesc:"Salon excellence delivered to your door.", fullDesc:"Award‑winning makeup artists and master stylists attend to you in your suite. Ideal for weddings, galas, or a perfect day.", examples:["Red carpet","Wedding preparation","Photo shoot"], features:["Bridal & event specialists","Hair, makeup & nails","Charlotte Tilbury & La Mer","Same‑day scheduling"], image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80&auto=format&fit=crop" },
+    { id:"wellness", name:"Wellness & Fitness Services", category:"Wellness", shortDesc:"Your routine, elevated and uninterrupted.", fullDesc:"Elite personal trainers, yoga instructors, and nutritionists ensure your wellness practice continues seamlessly. Equipment delivered to your suite.", examples:["Morning yoga","Pre-meeting meditation","Strength session"], features:["Certified trainers","Yoga, Pilates","Nutritional coaching","Equipment delivery"], image:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80&auto=format&fit=crop" },
+    { id:"housekeeping", name:"Housekeeping Services", category:"Suite Services", shortDesc:"Immaculate surroundings, on your terms.", fullDesc:"A highly trained, discreet housekeeping brigade maintains your suite to exacting standards at any hour. Twice‑daily turndowns, deep cleaning, and pressing.", examples:["Evening turndown","Deep cleaning","Last‑minute pressing"], features:["On‑demand scheduling","Couture laundry","Luxury toiletries","Turndown ritual"], image:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80&auto=format&fit=crop" },
+    { id:"celebration", name:"Celebration Setups", category:"Experiences", shortDesc:"Extraordinary moments, extraordinary staging.", fullDesc:"From rose‑petal proposals to birthday installations, our event stylists transform any space into an unforgettable tableau. Champagne, bespoke florals, and keepsakes included.", examples:["Proposal surprise","Milestone birthday","Anniversary dinner"], features:["Proposals & anniversaries","Custom florals","Champagne & cake","Personalised keepsakes"], image:"https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80&auto=format&fit=crop" },
+    { id:"itinerary", name:"Personalized Itinerary Planning", category:"Experiences", shortDesc:"Insider access the city keeps to itself.", fullDesc:"Our destination experts craft personalised itineraries with private galleries, Michelin restaurants, and exclusive events. Designed for the privileged insider.", examples:["Cultural weekend","Culinary tour","VIP concert access"], features:["Private tours","Priority reservations","Curated experiences","Real‑time adjustments"], image:"https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80&auto=format&fit=crop" }
+  ];
+  const extraServices = [
+    { name:"Private Helicopter Charters", icon:"ti-helicopter", shortDesc:"Scenic city & mountain tours" },
+    { name:"Yacht Rentals", icon:"ti-ship", shortDesc:"Crewed luxury cruises" },
+    { name:"Personal Security", icon:"ti-shield-lock", shortDesc:"Discreet professional protection" },
+    { name:"Global Event Tickets", icon:"ti-ticket", shortDesc:"VIP seats for world events" }
+  ];
+  function getIcon(name) {
+    const map = { "Private Chefs":"ti-tools-kitchen-2", "Luxury Car Rentals":"ti-car", "Airport Pickup & Drop‑off":"ti-plane", "Private Masseuse":"ti-leaf", "Personal Shoppers":"ti-shopping-bag", "Luggage Storage":"ti-luggage", "Makeup Artists & Hair Stylists":"ti-scissors", "Wellness & Fitness Services":"ti-barbell", "Housekeeping Services":"ti-home", "Celebration Setups":"ti-confetti", "Personalized Itinerary Planning":"ti-map-2" };
+    return map[name] || "ti-star";
+  }
+  function renderServices() {
+    const grid = document.getElementById('servicesGrid');
+    grid.innerHTML = '';
+    servicesData.forEach((s, idx) => {
+      const el = document.createElement('div');
+      el.className = 'service-item';
+      el.style.animation = `fadeIn 0.3s ease ${idx*0.02}s backwards`;
+      el.onclick = () => openDetail(s);
+      el.innerHTML = `<div class="service-header"><div class="service-name"><i class="ti ${getIcon(s.name)}"></i> ${s.name}</div><div class="service-cat">${s.category}</div></div><div class="service-desc">${s.shortDesc}<span class="arrow-icon"><i class="ti ti-arrow-right"></i></span></div>`;
+      grid.appendChild(el);
+    });
+    const moreDiv = document.createElement('div');
+    moreDiv.className = 'more-section';
+    const trigger = document.createElement('div');
+    trigger.className = 'more-trigger';
+    trigger.innerHTML = `<span><i class="ti ti-sparkles"></i> And More Bespoke Services</span> <i class="ti ti-arrow-right"></i>`;
+    trigger.onclick = () => switchToBespokeTab();
+    moreDiv.appendChild(trigger);
+    grid.appendChild(moreDiv);
+  }
+  function renderBespokeTab() {
+    const list = document.getElementById('bespokeServiceList');
+    const select = document.getElementById('bespokeService');
+    if (!list || !select) return;
+    list.innerHTML = '';
+    select.innerHTML = '<option value="">Select a service</option>';
+    extraServices.forEach(ext => {
+      const card = document.createElement('div');
+      card.className = 'bespoke-card';
+      card.dataset.service = ext.name;
+      card.innerHTML = `<i class="ti ${ext.icon}"></i><span>${ext.name}</span>`;
+      card.onclick = () => selectBespokeService(ext.name);
+      list.appendChild(card);
+      const opt = document.createElement('option');
+      opt.value = ext.name;
+      opt.textContent = ext.name;
+      select.appendChild(opt);
+    });
+    select.innerHTML += '<option value="Other">Other / Custom Request</option>';
+  }
+  function selectBespokeService(name) {
+    const select = document.getElementById('bespokeService');
+    if (select) select.value = name;
+    document.querySelectorAll('.bespoke-card').forEach(c => {
+      c.classList.toggle('selected', c.dataset.service === name);
+    });
+    document.getElementById('bespokeForm')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function switchToBespokeTab(serviceName) {
+    document.querySelector('.tab-btn[data-tab="bespoke"]')?.click();
+    if (serviceName) setTimeout(() => selectBespokeService(serviceName), 50);
+  }
+  function initBespokeForm() {
+    const form = document.getElementById('bespokeForm');
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const subject = `Bespoke Request: ${fd.get('service')}`;
+      const body = [
+        `Name: ${fd.get('name')}`,
+        `Email: ${fd.get('email')}`,
+        `Phone: ${fd.get('phone')}`,
+        `Service: ${fd.get('service')}`,
+        '',
+        'Details:',
+        fd.get('details') || '(none)'
+      ].join('\n');
+      window.location.href = `mailto:${BESPOKE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      alert('Your request is ready to send. Please confirm in your email app.');
+      form.reset();
+      document.querySelectorAll('.bespoke-card').forEach(c => c.classList.remove('selected'));
+    });
+  }
+  function removeBrokenImages(root) {
+    root.querySelectorAll('img').forEach(img => {
+      const hide = () => {
+        const media = img.closest('.detail-media, .hero-image, .about-hero');
+        img.remove();
+        if (media && !media.querySelector('img')) media.remove();
+      };
+      img.addEventListener('error', hide, { once: true });
+      if (img.complete && img.naturalWidth === 0) hide();
+    });
+  }
+  function openDetail(service) {
+    const detailDiv = document.getElementById('detailInner');
+    detailDiv.innerHTML = `
+      <div class="detail-media">
+        <div class="detail-gallery">
+          <img class="detail-gallery-main" src="${service.image}" alt="${service.name}">
+        </div>
+      </div>
+      <div class="detail-body">
+        <div class="detail-category">${service.category}</div>
+        <div class="detail-name">${service.name}</div>
+        <div class="gold-line"></div>
+        <p class="detail-desc">${service.fullDesc}</p>
+        <div class="use-cases"><h4><i class="ti ti-sparkles"></i> Perfect For</h4><ul>${service.examples.map(ex => `<li>${ex}</li>`).join('')}</ul></div>
+        <div class="features-list">${service.features.map(f => `<div class="feature"><i class="ti ti-circle-check"></i> ${f}</div>`).join('')}</div>
+        <button class="request-btn" onclick="alert('📞 Your request for ${service.name} has been sent to your personal concierge.')">Request This Service</button>
+        <button class="detail-back" onclick="closeDetailView()"><i class="ti ti-arrow-left"></i> Back to Services</button>
+      </div>
+    `;
+    document.getElementById('detailView').classList.add('active');
+    document.querySelector('.app-container').classList.add('detail-open');
+    document.getElementById('globalBackBtn').classList.remove('hide-back');
+    document.getElementById('mainViewTitle').innerText = 'Service Details';
+    removeBrokenImages(detailDiv);
+  }
+  function closeDetailView() {
+    document.getElementById('detailView').classList.remove('active');
+    document.querySelector('.app-container').classList.remove('detail-open');
+    document.getElementById('globalBackBtn').classList.add('hide-back');
+    document.getElementById('mainViewTitle').innerText = PAGE_TITLES.services;
+  }
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = { overview: document.getElementById('tab-overview'), services: document.getElementById('tab-services'), bespoke: document.getElementById('tab-bespoke'), reach: document.getElementById('tab-reach') };
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tab].classList.add('active');
+      document.getElementById('mainViewTitle').innerText = PAGE_TITLES[tab] || PAGE_TITLES.services;
+      closeDetailView();
+    });
+  });
+  function switchToServicesTab() { document.querySelector('.tab-btn[data-tab="services"]').click(); }
+  function switchToReachTab() { document.querySelector('.tab-btn[data-tab="reach"]').click(); }
+  renderServices();
+  renderBespokeTab();
+  initBespokeForm();
+  removeBrokenImages(document.querySelector('.app-container'));
+  window.closeDetailView = closeDetailView;
+</script>
+</body>
+</html>
